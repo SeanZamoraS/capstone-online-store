@@ -18,30 +18,45 @@ public class CategoryService
 
     public List<Category> getAllCategories()
     {
-        // get all categories
-        return null;
+        List<Category> categories = categoryRepository.findAll();
+        return categories;
     }
 
     public Category getById(int categoryId)
     {
-        // get category by id
-        return null;
+        Category category = categoryRepository.findById(categoryId).orElse(null);
+        return category;
     }
 
     public Category create(Category category)
     {
-        // create a new category
-        return null;
+        return categoryRepository.save(category);
     }
 
     public Category update(int categoryId, Category category)
     {
-        // update category and return the updated category
-        return null;
+        Category toUpdate = categoryRepository.findById(categoryId).orElseThrow();
+
+        if (!(category.getName() == null))
+        {
+            toUpdate.setName(category.getName());
+        }
+
+        if (!(category.getCategoryId() == 0))
+        {
+            toUpdate.setCategoryId(category.getCategoryId());
+        }
+
+        if (!(category.getName() == null))
+        {
+            toUpdate.setDescription(category.getDescription());
+        }
+
+        return toUpdate;
     }
 
     public void delete(int categoryId)
     {
-        // delete category
+        categoryRepository.deleteById(categoryId);
     }
 }
