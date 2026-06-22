@@ -127,6 +127,8 @@ public class Product
         return isFeatured;
     }
 
+    public boolean isNotFeatured() {return !isFeatured;}
+
     public void setFeatured(boolean featured)
     {
         isFeatured = featured;
