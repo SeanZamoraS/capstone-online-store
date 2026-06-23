@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest //learned I could use JPA annotations with tests
+@Sql(scripts = "classpath:create_database_videogamestore.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class ProductServiceTest
 {
     @Autowired
@@ -30,7 +31,7 @@ public class ProductServiceTest
     {
         //arrange
         List<Product> products;
-        ProductService productService = new ProductService(productRepository);
+
         //act
         products = productService.search(null, null, null, null);
         List<Product> shouldNotBeEmpty = products.stream()

@@ -27,7 +27,8 @@ ProductService
                        .filter(p -> minPrice == null || p.getPrice() >= minPrice)
                        .filter(p -> maxPrice == null || p.getPrice() <= maxPrice)
                        .filter(p -> subCategory == null || subCategory.equalsIgnoreCase(p.getSubCategory()))
-                       .filter(Product::isFeatured)
+                       //.filter(Product::isFeatured)
+                        //this is the line that causes bug #1
                        .toList();
     }
 
