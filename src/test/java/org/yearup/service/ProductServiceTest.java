@@ -40,4 +40,21 @@ public class ProductServiceTest
         //assert
         assertFalse(shouldNotBeEmpty.isEmpty(), "list was empty, only featured products appeared");
     }
+
+    @Test
+    public void updateShouldChangeStock()
+    {
+        //arrange
+        Product testProduct = new Product(1000, "test", 100.00, 3, "this is a test", "TEST", 100, false, "none");
+        Product savedProduct = productService.create(testProduct);
+        //act
+        Product compareProduct = new Product(savedProduct.getProductId(), savedProduct.getName(),
+                savedProduct.getPrice(), savedProduct.getCategoryId(), savedProduct.getDescription(),
+                savedProduct.getSubCategory(), 75, savedProduct.isFeatured(), savedProduct.getImageUrl());
+        Product updatedProduct = productService.update(savedProduct.getProductId(), compareProduct);
+
+        //had to do this jank because it would have been the same object in memory otherwise and thus passing everytime (?)
+        //assert
+        assertEquals(75, updatedProduct.getStock(), "Expected 75, got 100");
+    }
 }
