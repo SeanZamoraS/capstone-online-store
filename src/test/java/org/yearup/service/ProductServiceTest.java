@@ -1,27 +1,34 @@
 package org.yearup.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.yearup.models.Product;
 import org.yearup.repository.ProductRepository;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class ProductServiceTest
+@DataJpaTest //learned I could use JPA annotations with tests
+public class ProductServiceTest
 {
-    static ProductRepository productRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
-    public ProductServiceTest(ProductRepository productRepository)
+    private ProductService productService;
+
+    @BeforeEach
+    public void setUpRepo()
     {
-        this.productRepository = productRepository;
+        this.productService = new ProductService(productRepository);
     }
 
     @Test
-    public void searchShouldNotDisplayOnlyFeaturedGames()//pass is a fail
+    public void searchShouldNotDisplayOnlyFeaturedGames()
     {
         //arrange
-        new ProductServiceTest()
         List<Product> products;
         ProductService productService = new ProductService(productRepository);
         //act
@@ -30,7 +37,6 @@ class ProductServiceTest
                 .filter(Product::isNotFeatured)
                 .toList();
         //assert
-        assert shouldNotBeEmpty.isEmpty(): "Test passed, list had something in it.";
+        assertFalse(shouldNotBeEmpty.isEmpty(), "list was empty, only featured products appeared");
     }
-
 }
