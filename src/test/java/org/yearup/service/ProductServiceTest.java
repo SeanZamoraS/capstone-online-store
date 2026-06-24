@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest //learned I could use JPA annotations with tests
 @Sql(scripts = "classpath:create_database_videogamestore.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+//load database w/ this script, empty otherwise (?)
 public class ProductServiceTest
 {
     @Autowired

@@ -58,6 +58,7 @@ ProductService
         existing.setSubCategory(product.getSubCategory());
         //line that fixes the bug #2 below
         existing.setStock(product.getStock());
+        //
         existing.setFeatured(product.isFeatured());
         existing.setImageUrl(product.getImageUrl());
         return productRepository.save(existing);
