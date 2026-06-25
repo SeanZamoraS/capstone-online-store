@@ -90,7 +90,6 @@ public class ShoppingCartService
     public CartItem saveToCart(int productId, int userId)
     {
         HashMap<Integer, Integer> quantityList = changeCartToQuantityList(userId);
-        Product newProduct = productService.getById(productId);
 
         quantityList.merge(productId, 1, Integer::sum);
 
@@ -103,13 +102,13 @@ public class ShoppingCartService
 
         for(CartItem item : items)
         {
-            if(finalCartItem.getUserId() == userId && finalCartItem.getProductId() == productId)
+            if(item.getUserId() == userId && item.getProductId() == productId)
             {
                 finalCartItem.setCartItemId(item.getCartItemId());
                 return shoppingCartRepository.save(finalCartItem);
             }
         }
-        finalCartItem.setCartItemId(0);
+        //finalCartItem.setCartItemId(null);
         return  shoppingCartRepository.save(finalCartItem);
 
     }
@@ -130,5 +129,20 @@ public class ShoppingCartService
 
         return quantityList;
     }
+
+    public ShoppingCart editCart(ShoppingCart currentCart, int productId, int newQuantity)
+    {
+        Map<Integer, ShoppingCartItem> itemsMap = currentCart.getItems();
+
+        for(Map.Entry<Integer, ShoppingCartItem> entry : itemsMap.entrySet())
+        {
+            if(entry.getValue().getProductId() == productId)
+            {
+                entry.getValue().setQuantity(newQuantity);
+            }
+        }
+        return currentCart;
+    }
+
 
 }

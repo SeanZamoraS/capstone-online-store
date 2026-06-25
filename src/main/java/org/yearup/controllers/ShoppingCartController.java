@@ -59,15 +59,25 @@ public class ShoppingCartController
 
         CartItem cartItem = shoppingCartService.saveToCart(id, userId);
 
-        ShoppingCart userCart = shoppingCartService.getByUserId(id);
-
+        ShoppingCart userCart = shoppingCartService.getByUserId(userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCart);
     }
-
 
     // add a PUT method to update an existing product in the cart - the url should be
     // https://localhost:8080/cart/products/15  (15 is the productId to be updated)
     // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated; return the cart (200 OK)
+    @PutMapping("products/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')") //they're gonna send their whole shopping cart in json, you have to grab the quantity, use a loop?
+    public ResponseEntity<ShoppingCart> editQuantityItem(Principal principal, @PathVariable int id)
+    {
+        String userName = principal.getName();
+        User user = userService.getByUserName(userName);
+        int userId = user.getId();
+
+
+
+
+    }
 
 
     // add a DELETE method to clear all products from the current users cart
