@@ -60,10 +60,75 @@ public class ShoppingCartService
 
         return finalCart;
     }
-
-
-
-
-
     // add additional methods here
+
+    public ShoppingCart addToCart(int productId, int userId)
+    {
+        HashMap<Integer, Integer> quantityList = changeCartToQuantityList(userId);
+        Product newProduct = productService.getById(productId);
+
+        quantityList.merge(productId, 1, Integer::sum);
+
+        List<ShoppingCartItem> shoppingItems = new ArrayList<>();
+        ShoppingCart finalCart = new ShoppingCart();
+
+        for(Map.Entry<Integer, Integer> entry : quantityList.entrySet())
+        {
+            ShoppingCartItem newItem = new ShoppingCartItem();
+            newItem.setProduct(productService.getById(entry.getKey()));
+            newItem.setQuantity(entry.getValue());
+            shoppingItems.add(newItem); //add to list
+        }
+
+        shoppingItems.stream()
+                .forEach(item -> finalCart.add(item));
+
+        return finalCart;
+
+    }
+
+    public CartItem saveToCart(int productId, int userId)
+    {
+        HashMap<Integer, Integer> quantityList = changeCartToQuantityList(userId);
+        Product newProduct = productService.getById(productId);
+
+        quantityList.merge(productId, 1, Integer::sum);
+
+        CartItem finalCartItem = new CartItem();
+        finalCartItem.setQuantity(quantityList.get(productId));
+        finalCartItem.setProductId(productId);
+        finalCartItem.setUserId(userId);
+
+        List<CartItem> items = shoppingCartRepository.findByUserId(userId);
+
+        for(CartItem item : items)
+        {
+            if(finalCartItem.getUserId() == userId && finalCartItem.getProductId() == productId)
+            {
+                finalCartItem.setCartItemId(item.getCartItemId());
+                return shoppingCartRepository.save(finalCartItem);
+            }
+        }
+        finalCartItem.setCartItemId(0);
+        return  shoppingCartRepository.save(finalCartItem);
+
+    }
+    private HashMap<Integer, Integer> changeCartToQuantityList(int userId)
+    {//key is product id, value is quantity
+        List<CartItem> items = shoppingCartRepository.findByUserId(userId);
+
+        //let's get a list of all the products for this user from the cart items
+        List<Product> productsList = items.stream()
+                .map(item -> productService.getById(item.getProductId()))
+                .toList();
+
+        //key is product id, value is quantity
+        HashMap<Integer, Integer> quantityList = new HashMap<>();
+        //now that we have a list of products, for each product add it to the tally (hashmap)
+        productsList.stream()
+                .forEach(product -> quantityList.merge(product.getProductId(), 1, Integer::sum));
+
+        return quantityList;
+    }
+
 }

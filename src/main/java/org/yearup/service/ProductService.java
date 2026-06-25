@@ -7,8 +7,7 @@ import org.yearup.repository.ProductRepository;
 import java.util.List;
 
 @Service
-public class
-ProductService
+public class ProductService
 {
     private final ProductRepository productRepository;
 
