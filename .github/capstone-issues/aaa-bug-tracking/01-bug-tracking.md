@@ -7,6 +7,7 @@
 - MacOS Tahoe 26.5.1
 - IntelliJ 2026.1 (server)
 - Insomnia 13.0.2 (HTTP requests)
+- MySQL server 8.0.46-arm64 + workbench
 
 # Reproduce:
 Use Insomnia to send a GET request to the API server at the URL http://127.0.0.1:8080/products
