@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.yearup.models.CartItem;
 import org.yearup.models.Product;
 import org.yearup.models.ShoppingCart;
@@ -66,21 +67,45 @@ public class ShoppingCartController
     // add a PUT method to update an existing product in the cart - the url should be
     // https://localhost:8080/cart/products/15  (15 is the productId to be updated)
     // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated; return the cart (200 OK)
-    @PutMapping("products/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')") //they're gonna send their whole shopping cart in json, you have to grab the quantity, use a loop?
-    public ResponseEntity<ShoppingCart> editQuantityItem(Principal principal, @PathVariable int id)
+    @PutMapping("products/{productId}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<ShoppingCart> editQuantityItem(Principal principal, @PathVariable int productId,
+    @RequestBody int quantity)
     {
         String userName = principal.getName();
         User user = userService.getByUserName(userName);
         int userId = user.getId();
 
+        ShoppingCart currentCart = shoppingCartService.getByUserId(userId);
+        ShoppingCart newCart = shoppingCartService.editCart(currentCart, productId, quantity, userId);
 
+        if(newCart == null)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(currentCart);
+        }
 
-
+        return ResponseEntity.status(HttpStatus.OK).body(newCart);
     }
 
 
     // add a DELETE method to clear all products from the current users cart
     // https://localhost:8080/cart  - return the (now empty) cart so the front end can refresh it (200 OK)
+    @DeleteMapping("")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<Void> deleteCart(Principal principal)
+    {
+        String userName = principal.getName();
+        User user = userService.getByUserName(userName);
+        int userId = user.getId();
+
+        boolean successful = shoppingCartService.deleteCart(userId);
+
+        if(!successful)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.noContent().build();
+    }
 
 }

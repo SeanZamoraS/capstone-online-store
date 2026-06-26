@@ -130,18 +130,61 @@ public class ShoppingCartService
         return quantityList;
     }
 
-    public ShoppingCart editCart(ShoppingCart currentCart, int productId, int newQuantity)
+    public ShoppingCart editCart(ShoppingCart currentCart, int productId, int newQuantity, int userId)
     {
         Map<Integer, ShoppingCartItem> itemsMap = currentCart.getItems();
+
+        int keyId;
 
         for(Map.Entry<Integer, ShoppingCartItem> entry : itemsMap.entrySet())
         {
             if(entry.getValue().getProductId() == productId)
             {
                 entry.getValue().setQuantity(newQuantity);
+
+                int cartItemId = findCartItemId(userId, productId);
+
+                CartItem toSave = new CartItem();
+
+                toSave.setCartItemId(cartItemId);
+                toSave.setUserId(userId);
+                toSave.setProductId(productId);
+                toSave.setQuantity(newQuantity);
+
+                shoppingCartRepository.save(toSave);
+
+                currentCart.setItems(itemsMap);
+                return currentCart;
             }
         }
-        return currentCart;
+
+        return null;
+    }
+
+    private int findCartItemId(int userId, int productId)
+    {
+        List<CartItem> items = shoppingCartRepository.findByUserId(userId);
+
+        for(CartItem item : items)
+        {
+            if(item.getProductId() == productId && item.getUserId() == userId)
+            {
+                return item.getCartItemId();
+            }
+        }
+        return 0;
+    }
+
+    public boolean deleteCart(int userId)
+    {
+        List<CartItem> items = shoppingCartRepository.findByUserId(userId);
+
+        if(items.isEmpty()) {return false;}
+
+        items.stream()
+                .forEach(item -> shoppingCartRepository.delete(item));
+
+        return true;
     }
 
 
