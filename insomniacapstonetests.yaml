@@ -1,0 +1,602 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Debugging
+meta:
+  id: wrk_f9869db13da9491e87e794ee2f970936
+  created: 1782145223988
+  modified: 1782145257217
+  description: ""
+collection:
+  - url: localhost:8080/login
+    name: Sign in (admin)
+    meta:
+      id: req_d7f589f49f7842ebaf937cef33ec287e
+      created: 1782157501997
+      modified: 1782454019455
+      isPrivate: false
+      description: ""
+      sortKey: -1782453900741
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "admin",
+        	"password": "password"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8080/login
+    name: Sign in (george)
+    meta:
+      id: req_4c037a0d41c34f3d868cc656cbeff2d7
+      created: 1782340344646
+      modified: 1782454032760
+      isPrivate: false
+      description: ""
+      sortKey: -1782453900641
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"george",
+        	"password":"password"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - name: CategoriesController testing
+    meta:
+      id: fld_fe5c6a987bde4235badc5a9ec9f479e6
+      created: 1782159993925
+      modified: 1782159993925
+      sortKey: -1782159993926
+      description: ""
+    children:
+      - url: localhost:8080/categories
+        name: Able to reach categories?
+        meta:
+          id: req_ceda64f3f58647e080ef209b57f30786
+          created: 1782157399421
+          modified: 1782160011834
+          isPrivate: false
+          description: ""
+          sortKey: -1782160011786
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/categories
+        name: Create category test
+        meta:
+          id: req_fda78f6b7b5141db953d2511140b8558
+          created: 1782157738928
+          modified: 1782160029121
+          isPrivate: false
+          description: ""
+          sortKey: -1782160012086
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "retro games",
+            	"description": "Games released before 2016"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NTY0NH0.2tTg3qwVqrWDku8IKfEnHJK5NNyYXM_f-5mnE4fA8pUHMayn3jO_KGBxyK535gDl7epoGUi3tzHhFPaSjMM52A
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/categories/4
+        name: Modify category test
+        meta:
+          id: req_89865a4dda6243be9323d5fc7b62f876
+          created: 1782157954747
+          modified: 1782160031523
+          isPrivate: false
+          description: ""
+          sortKey: -1782160012186
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"description": "Games released before 2006"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NjY5Nn0.YmslnpeC17HQz8fAKTDHmWe8XprOkRCD9mvZ5ie-oRLcmxeYFcmRYJYbFW61Y9DcgVoDVRlh4n94MSalVSF48Q
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/categories/4
+        name: Delete Category Test
+        meta:
+          id: req_f8c81dee3de145c88e2f5aff8affc289
+          created: 1782158974489
+          modified: 1782160033630
+          isPrivate: false
+          description: ""
+          sortKey: -1782160012286
+        method: DELETE
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NjY5Nn0.YmslnpeC17HQz8fAKTDHmWe8XprOkRCD9mvZ5ie-oRLcmxeYFcmRYJYbFW61Y9DcgVoDVRlh4n94MSalVSF48Q
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/categories/3/products
+        name: See products by category
+        meta:
+          id: req_3c454f1b66b54e57b22dd60844dc62d2
+          created: 1782159379234
+          modified: 1782160021417
+          isPrivate: false
+          description: ""
+          sortKey: -1782160011886
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/categories/1
+        name: See category by ID
+        meta:
+          id: req_e9b2908e33da4015bb79f9c2f0a4020e
+          created: 1782159407260
+          modified: 1782160026969
+          isPrivate: false
+          description: ""
+          sortKey: -1782160011986
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: ProductsController testing
+    meta:
+      id: fld_b05fd43193a84365b65f70432fd670a8
+      created: 1782160277821
+      modified: 1782160277821
+      sortKey: -1782160277821
+      description: ""
+    children:
+      - url: localhost:8080/products
+        name: View all products
+        meta:
+          id: req_a55cf2873baa46f9be3fd8664ea55ce6
+          created: 1782160286174
+          modified: 1782161180381
+          isPrivate: false
+          description: ""
+          sortKey: -1782160286174
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products/20
+        name: View product by ID
+        meta:
+          id: req_165f59847c3843ae80a9df6bd42ec9a4
+          created: 1782160304931
+          modified: 1782161213698
+          isPrivate: false
+          description: ""
+          sortKey: -1782160304931
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products?cat=1&minPrice=30&maxPrice=55&subCategory=Adventure
+        name: Search for products
+        meta:
+          id: req_282cf8d1914e4819b1df491972a4ae94
+          created: 1782160689482
+          modified: 1782161460403
+          isPrivate: false
+          description: ""
+          sortKey: -1782160689482
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products
+        name: Add product
+        meta:
+          id: req_37855d519c2343418b7b1ee164aac6cf
+          created: 1782160728511
+          modified: 1782161583372
+          isPrivate: false
+          description: ""
+          sortKey: -1782160728511
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"name": "Super GWARIO",
+            		"price": 51.99,
+            		"categoryId": 1,
+            		"description": "GWAR",
+            		"subCategory": "Cheese",
+            		"stock": 49,
+            		"imageUrl": "mario-odyssey.jpg",
+            		"featured": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NjY5Nn0.YmslnpeC17HQz8fAKTDHmWe8XprOkRCD9mvZ5ie-oRLcmxeYFcmRYJYbFW61Y9DcgVoDVRlh4n94MSalVSF48Q
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products/64
+        name: Update product
+        meta:
+          id: req_26b7fb96c8454e8391a56ee361f19119
+          created: 1782160920266
+          modified: 1782493654811
+          isPrivate: false
+          description: ""
+          sortKey: -1782160920266
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"name": "Super GWARio 2",
+            		"price": 51.99,
+            		"categoryId": 1,
+            		"description": "GWAR",
+            		"subCategory": "no cheese :(",
+            		"stock": 49,
+            		"imageUrl": "supergwario2.jpg",
+            		"featured": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjYwMTMwNH0.RQYjiF-OxR7-JLAgpBB_XArQWsHMci0Yw2ue07XqAsSF_9uSB3lyaRo06LvPxliHVhUZWtkQpCQVE0dQhrm-Yg
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products/63
+        name: Delete product
+        meta:
+          id: req_e63b2c40f04747978b171cfaa0be2441
+          created: 1782160943180
+          modified: 1782162103739
+          isPrivate: false
+          description: ""
+          sortKey: -1782160943180
+        method: DELETE
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NTY0NH0.2tTg3qwVqrWDku8IKfEnHJK5NNyYXM_f-5mnE4fA8pUHMayn3jO_KGBxyK535gDl7epoGUi3tzHhFPaSjMM52A
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: ProductsController Debugging
+    meta:
+      id: fld_b1454e4437884e9585fe1cd66499d01d
+      created: 1782162632666
+      modified: 1782162632666
+      sortKey: -1782162632666
+      description: ""
+    children:
+      - url: localhost:8080/products?cat=2
+        name: Search test
+        meta:
+          id: req_e3bf2285d36545d5976175ffc423f1ba
+          created: 1782162641329
+          modified: 1782239074077
+          isPrivate: false
+          description: ""
+          sortKey: -1782162641329
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/products/64
+        name: Save changes product test
+        meta:
+          id: req_d1bbc2ef2a624498b2b2d73577daa6af
+          created: 1782239126754
+          modified: 1782493271734
+          isPrivate: false
+          description: ""
+          sortKey: -1782239126754
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"name": "Super GWARIO 2",
+            		"price": 52.99,
+            		"categoryId": 2,
+            		"description": "GWARio",
+            		"subCategory": "please",
+            		"stock": 101,
+            		"imageUrl": "baldurs-gate-3.jpg",
+            		"featured": true
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjI2NTY0NH0.2tTg3qwVqrWDku8IKfEnHJK5NNyYXM_f-5mnE4fA8pUHMayn3jO_KGBxyK535gDl7epoGUi3tzHhFPaSjMM52A
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: ShoppingCartController testing
+    meta:
+      id: fld_dff1bfab56064b14bc11a96b0b663eef
+      created: 1782340306178
+      modified: 1782340306178
+      sortKey: -1782340306178
+      description: ""
+    children:
+      - url: localhost:8080/cart
+        name: View cart
+        meta:
+          id: req_e16618ee8cd445b3a59920071d372b1c
+          created: 1782340314004
+          modified: 1782340593634
+          isPrivate: false
+          description: ""
+          sortKey: -1782340314004
+        method: GET
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2UiLCJhdXRoIjoiUk9MRV9VU0VSLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjQ0ODUyNH0._DSvMG2cvK59Bj8ohgqYhYmGbPvfjLGDmCmpPzUBM3e5xx7sxx9iY7ddBqPLVlk82XjXoVsIufCgyWGxNJl4Tg
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/cart/products/3
+        name: Add to cart
+        meta:
+          id: req_5be11c8662c040e5af5f3d0defe4daf3
+          created: 1782423408349
+          modified: 1782451033983
+          isPrivate: false
+          description: ""
+          sortKey: -1782423408349
+        method: POST
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2UiLCJhdXRoIjoiUk9MRV9VU0VSLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjQ0ODUyNH0._DSvMG2cvK59Bj8ohgqYhYmGbPvfjLGDmCmpPzUBM3e5xx7sxx9iY7ddBqPLVlk82XjXoVsIufCgyWGxNJl4Tg
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/cart/products/64
+        name: Edit Quantity
+        meta:
+          id: req_b6bf6d36480d4a22b97f66e6f76861e3
+          created: 1782450908610
+          modified: 1782452211815
+          isPrivate: false
+          description: ""
+          sortKey: -1782450908610
+        method: PUT
+        body:
+          mimeType: application/json
+          text: "5"
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2UiLCJhdXRoIjoiUk9MRV9VU0VSLEZBQ1RPUl9QQVNTV09SRCIsImV4cCI6MTc4MjU2MDE4MX0.Jue9KM44xLSlyhuyWSe4DDUV1RP_KNyzOtgUXvQ_W8WWT_xVZ1nPih-3QXEYT8wquyvGDkQdC3RJKRqCJmO1aw
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cart Testing User Account
+    meta:
+      id: fld_cc7cb8f97c0941929261bf3188fee48b
+      created: 1782453900541
+      modified: 1782453900541
+      sortKey: -1782453900541
+      description: ""
+    children:
+      - url: localhost:8080/login
+        name: Sign in (user)
+        meta:
+          id: req_f20e09e5e5494755a6561ec84ad455c3
+          created: 1782454037683
+          modified: 1782454121408
+          isPrivate: false
+          description: ""
+          sortKey: -1782454037683
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username":"user",
+            	"password":"password"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/cart/products/11
+        name: Add something to cart
+        meta:
+          id: req_850b024449eb42dcab028b79fc246413
+          created: 1782454139588
+          modified: 1782454243306
+          isPrivate: false
+          description: ""
+          sortKey: -1782454139588
+        method: POST
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUixGQUNUT1JfUEFTU1dPUkQiLCJleHAiOjE3ODI1NjIxMjN9.3hmIxvOAHtKwtvFUg7-TIPNZY-ps1AeHQbPb0LAcG7XtZQKqbg7npNvBxN4FlpQEDiMpkJPe-LnuQKy7-go6hg
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/cart
+        name: New Request
+        meta:
+          id: req_da55ec91ffc14f0d844c4d4f773fcd94
+          created: 1782454258844
+          modified: 1782454288874
+          isPrivate: false
+          description: ""
+          sortKey: -1782454258844
+        method: DELETE
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUixGQUNUT1JfUEFTU1dPUkQiLCJleHAiOjE3ODI1NjIxMjN9.3hmIxvOAHtKwtvFUg7-TIPNZY-ps1AeHQbPb0LAcG7XtZQKqbg7npNvBxN4FlpQEDiMpkJPe-LnuQKy7-go6hg
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_e70e02c10156bfbb6aabb6f29c855b94bdb29ce2
+    created: 1782145223991
+    modified: 1782145223991
+environments:
+  name: Base Environment
+  meta:
+    id: env_e70e02c10156bfbb6aabb6f29c855b94bdb29ce2
+    created: 1782145223990
+    modified: 1782145223990
+    isPrivate: false

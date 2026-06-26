@@ -25,3 +25,9 @@ to view the html interface. Otherwise, the API also accepts requests from Insomn
 ## Development notes:
 
 I wanted to try being detailed in my documentation of bugs as much as I could while still trying to implement some features. I thought this would be a useful skill to focus on for this capstone and would incorporate some of my IT skills.
+
+I did not realize that the .yaml for this project existed in the starter code for Insomnia and that we were supposed to be using it 
+as a list of requirements for our app. I have thus updated (after turning in) my code to fix some of 
+the required status codes for the tests. I have also included my own tests I wrote in Insomnia
+that I went ahead with the project on when they passed rather than using the proper ones. 
+You may find this in the base of the project structure called insomniacapstonetests.yaml.
