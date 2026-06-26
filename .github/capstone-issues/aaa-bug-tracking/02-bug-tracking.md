@@ -5,9 +5,9 @@
 
 # Environment: 
 - MacOS Tahoe 26.5.1
-- IntelliJ 2026.1 (server)
-- Insomnia 13.0.2 (HTTP requests)
-- MySQL server 8.0.46-arm64 + workbench
+- IntelliJ 2026.1 (server, on my Mac)
+- Insomnia 13.0.2 (HTTP requests, on my Mac)
+- MySQL server 8.0.46-arm64 + workbench (on my Mac)
 
 # Reproduce:
 Use Insomnia to send a PUT request w/ URL http://127.0.0.1:8080/products/(id) number to test goes here, I used 64 and made a new product), put all required fields into the JSON body and notice that the body of the reply’s stock field is not changed
