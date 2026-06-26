@@ -11,6 +11,8 @@ which draws from a SQL database.
 I did not touch the front end of the project for the most part. I was focused on creating new features on the 
 back end and testing with Insomnia rather than the front end. 
 
+You will find my bug tracking .md files inside database/capstone-issues/aaa-bug-tracking.
+
 ## How to run project:
 
 At this point in time, in order to run this project you will need at least one IDE installed and MySQL server.
@@ -22,4 +24,4 @@ to view the html interface. Otherwise, the API also accepts requests from Insomn
 
 ## Development notes:
 
-I wanted to try being detailed in my documentation of bugs as much as I could while still trying to implement some features. I thought this would be a useful skill to focus on for this capstone and would incorporate some of my IT skills. 
+I wanted to try being detailed in my documentation of bugs as much as I could while still trying to implement some features. I thought this would be a useful skill to focus on for this capstone and would incorporate some of my IT skills.
