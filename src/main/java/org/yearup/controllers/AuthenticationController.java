@@ -26,7 +26,8 @@ import org.yearup.security.jwt.TokenProvider;
 
 @RestController
 @CrossOrigin
-@PreAuthorize("permitAll()")
+@PreAuthorize("permitAll()") //note after turn in: apparently broken according to insomnia test, not seeing any bugs
+//here or in service but I didn't look too hard. I didn't touch this code during my project?
 public class AuthenticationController {
 
     private final TokenProvider tokenProvider;

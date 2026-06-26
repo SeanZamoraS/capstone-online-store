@@ -1,5 +1,6 @@
 package org.yearup.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.yearup.models.Category;
 import org.yearup.repository.CategoryRepository;
@@ -33,6 +34,7 @@ public class CategoryService
         return categoryRepository.save(category);
     }
 
+    @Transactional //fixed post turn in, learned you had to put this here during presentations
     public Category update(int categoryId, Category category)
     {
         Category toUpdate = categoryRepository.findById(categoryId).orElseThrow();
@@ -47,12 +49,12 @@ public class CategoryService
             toUpdate.setCategoryId(category.getCategoryId());
         }
 
-        if (!(category.getName() == null))
+        if (!(category.getDescription() == null))
         {
             toUpdate.setDescription(category.getDescription());
         }
 
-        return toUpdate;
+        return categoryRepository.save(toUpdate);
     }
 
     public void delete(int categoryId)

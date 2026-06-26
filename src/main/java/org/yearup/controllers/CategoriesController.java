@@ -46,9 +46,13 @@ public class CategoriesController
 
     // add the appropriate annotation for a get action
     @GetMapping("{id}")
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("permitAll()") //fixed post turn in
     public Category getById(@PathVariable int id)
     {
+        if(categoryService.getById(id) == null)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         Category category = categoryService.getById(id);
         return category;
     }
